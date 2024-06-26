@@ -1,0 +1,386 @@
+fileFormatVersion: 2
+guid: 1f3c4803724224942885753bba2513dd
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AbLeftMid
+    second: {fileID: 2100000, guid: a3c8254d9dee78248b3833748856b7bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AbRightMid
+    second: {fileID: 2100000, guid: 6d3864772afa11d48a93b638a6e41446, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackLineBottom
+    second: {fileID: 2100000, guid: 036493003f7a12a4ba9a29ca68d2d3a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackLineMiddle
+    second: {fileID: 2100000, guid: 848053e2069114a4589237865b596a94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackLineTop
+    second: {fileID: 2100000, guid: 8c02597cab6112e4fbbfadc348e4f860, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackMidUpperLeft
+    second: {fileID: 2100000, guid: b93928d7dcf96994a81a14e4c7f1133b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackMidUpperRight
+    second: {fileID: 2100000, guid: 8983670bb66145443a929a561d76c5c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackMiddleLeft
+    second: {fileID: 2100000, guid: 3427aea48eb32534196886bcaba59f66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackMiddleRight
+    second: {fileID: 2100000, guid: 6bf40405f95d61349b8b4b41bdc47680, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackTopLeft
+    second: {fileID: 2100000, guid: e8224874638e4894da8c2446a3b76a7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BackTopRight
+    second: {fileID: 2100000, guid: 7dd9b6834aeaef243829261ac548bf1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BellyButton
+    second: {fileID: 2100000, guid: ba88d7ed0b38fbf4e967a9414777f1b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BellyLeftMid
+    second: {fileID: 2100000, guid: 77c003070e0ebe44389b3016dd3312ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BellyRightMid
+    second: {fileID: 2100000, guid: 1d80547be7e1b8b4d872fa9889a1f7b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BelowTie
+    second: {fileID: 2100000, guid: 76b55d1b42043504a861c844f2071f63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtLeft
+    second: {fileID: 2100000, guid: b3203b80a53a88749976d70fb9c1149b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtMiddle
+    second: {fileID: 2100000, guid: 01386663d70a6664793a333eec276182, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtRight
+    second: {fileID: 2100000, guid: fd183c3830c8cc341b045a53d39f3702, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ChestLeftMid
+    second: {fileID: 2100000, guid: 1ce3e4de612faab4a95405be3fb75429, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ChestRightMid
+    second: {fileID: 2100000, guid: 7e6359d3c98692947a9b4f8b32a76719, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GloveLeft
+    second: {fileID: 2100000, guid: d758f9a2a29e45447acb300bae3ce013, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GloveRight
+    second: {fileID: 2100000, guid: 1d82f0e15a8bd1145a24f6f31318f700, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GroinLeft
+    second: {fileID: 2100000, guid: 474e14d4fe225394d8203843eae25d92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GroinMiddle
+    second: {fileID: 2100000, guid: 4f556db065cd04f45b303ffd54ef7ade, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GroinRight
+    second: {fileID: 2100000, guid: 5f9b85e56b58cd34c8b2baf91de8fee0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair
+    second: {fileID: 2100000, guid: 8a6159cecb4f24b4cb33962611bddc41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: InBetweenLegs
+    second: {fileID: 2100000, guid: eb164a67f484a7b488ae32a96ba30849, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeftEye
+    second: {fileID: 2100000, guid: e810839bec82b104c8188c2aa4caa9cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeftShoulder
+    second: {fileID: 2100000, guid: 0f6a22978ae9140458a2c7535b505013, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeftSideBottom
+    second: {fileID: 2100000, guid: 8abfe5e636925834a8797733c05e72ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeftSideMiddle
+    second: {fileID: 2100000, guid: 4a0603cc6bc967b4da9c9b8623346f71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LeftSideTop
+    second: {fileID: 2100000, guid: a08e7a8006353784faad77b806e9dd9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LongSleeveLeft
+    second: {fileID: 2100000, guid: 42a94571841eb8c4eaed1613c734a91e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LongSleeveRight
+    second: {fileID: 2100000, guid: ec6226e976b67a94788b7c0759166434, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MediumSleeveLeft
+    second: {fileID: 2100000, guid: c6504428bfe25384ebc190d9ff670672, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MediumSleeveRight
+    second: {fileID: 2100000, guid: 4895c5222febb014a9a0216bc29a8821, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PantsLeft
+    second: {fileID: 2100000, guid: d19701f0f22ae884d82b80a59837bafd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PantsRight
+    second: {fileID: 2100000, guid: 6ddcc4df70ce2de4e92864954bac2046, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RightEye
+    second: {fileID: 2100000, guid: 5f763de8234d9444992480722c14bd46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RightShoulder
+    second: {fileID: 2100000, guid: 882047c85087e314fb0da98449c038eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RightSideBottom
+    second: {fileID: 2100000, guid: 088759a8860e04b4b80d7ce0357c73f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RightSideMiddle
+    second: {fileID: 2100000, guid: 7c92af4b27fdc164e87e5c95b1af3035, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RightSideTop
+    second: {fileID: 2100000, guid: 228b121e88218af40978c10685f3bfd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShoeLeft
+    second: {fileID: 2100000, guid: 4147b0939a8d2174eac035cd2cc95495, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShoeRight
+    second: {fileID: 2100000, guid: 98c3161f546de0c4189776bc72c0d1cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShortSleeveLeft
+    second: {fileID: 2100000, guid: d16c7f77e646cd74389ef150dd54349b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShortSleeveRight
+    second: {fileID: 2100000, guid: bb6d438ef9874874c869ed8e9692e474, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShortsLeft
+    second: {fileID: 2100000, guid: 8301dff877a33324ba94ec8045a77391, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShortsRight
+    second: {fileID: 2100000, guid: 153175708f7cb3d4893c025f5d70712f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 4053ee9f72c64da4aa49b297c4a060f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tie
+    second: {fileID: 2100000, guid: 92e2d35abdc441d41809316b00432faf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopLeftMid
+    second: {fileID: 2100000, guid: a4d6b929f61b6654b8dfefe9df7ca8f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopRightMid
+    second: {fileID: 2100000, guid: c256c0d4cfa1e704dadecd5702a8368a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopTie
+    second: {fileID: 2100000, guid: 91f40144d7940934a89837204234bf9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UnderwearLeft
+    second: {fileID: 2100000, guid: 20a8c3e69c89df04b9a472568eb170fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: UnderwearRight
+    second: {fileID: 2100000, guid: d819face51c5f7b4cb213b50c31aa460, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
