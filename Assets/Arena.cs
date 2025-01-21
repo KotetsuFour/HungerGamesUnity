@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using Unity.AI.Navigation;
 
 public class Arena : MonoBehaviour
 {
@@ -166,7 +165,7 @@ public class Arena : MonoBehaviour
         cornucopia = Instantiate(cornucopiaTypes[cornType]);
         cornucopia.transform.position = Vector3.zero;
 
-        tileMap[0, 0].gameObject.AddComponent<NavMeshSurface>().BuildNavMesh();
+        //tileMap[0, 0].gameObject.AddComponent<NavMeshSurface>().BuildNavMesh();
 
         readDetails.Close();
     }

@@ -12,12 +12,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Land
   - Water
   - UI
   - Interactable
-  - 
-  - 
+  - Deco
+  - TileNode
   - 
   - 
   - 
