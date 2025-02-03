@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalNight.unity
     guid: ce8e1b5c8b98a8c4da65f37ab7382825
+  - enabled: 1
+    path: Assets/Scenes/Arena.unity
+    guid: 9cf4d458abd49ad479807cbd6845a91c
   m_configObjects: {}

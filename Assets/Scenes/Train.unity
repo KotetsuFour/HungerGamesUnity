@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1539,14 +1539,14 @@ MonoBehaviour:
   escortPos: {fileID: 373933619}
   mentorPos: {fileID: 1934913674}
   playerPos: {fileID: 1177240975}
-  olderMalePlayer: {fileID: 5998558728692562975, guid: 3a0e9440c2f05fd4da216c852254aadc, type: 3}
-  olderFemalePlayer: {fileID: 33560227958146696, guid: 7eb4baeb49ffc434da3dc9f991adf20a, type: 3}
-  youngerMalePlayer: {fileID: 1693266254365530621, guid: 7e448df6a03513a4cbad667b6f01bf15, type: 3}
-  youngerFemalePlayer: {fileID: 117260240867082112, guid: 44334508302c2f2419485f0c89ac668e, type: 3}
-  olderMaleNPC: {fileID: 8838910064718508259, guid: a4abb0f93318ccf4c90b6c60b2494683, type: 3}
-  olderFemaleNPC: {fileID: 6669178096934819822, guid: 470ade814a7700a4dbbab7361c0f302d, type: 3}
-  youngerMaleNPC: {fileID: 1686327480029531701, guid: 7be93ef6a0e93074dbd5186e01b82ee9, type: 3}
-  youngerFemaleNPC: {fileID: 6169927945911039744, guid: a8baea1d10a390b4786a5527b256bf38, type: 3}
+  olderMalePlayer: {fileID: 4490166379785205942, guid: 6eb58d85bb054fe4d9d70c86c14437c3, type: 3}
+  olderFemalePlayer: {fileID: 5873964787331807256, guid: 8a9fb60d72ed0bf468b3a84d5d9ddc52, type: 3}
+  youngerMalePlayer: {fileID: 2811766514210340006, guid: 0138093ac03f09541b9daa1c5d4cfb79, type: 3}
+  youngerFemalePlayer: {fileID: 5339227608698317168, guid: fb5e0e0d5c10bca48b0dbfdbc4b294d1, type: 3}
+  olderMaleNPC: {fileID: 6792470968557204021, guid: e4c926f8ce012d2479e6602a22ea1894, type: 3}
+  olderFemaleNPC: {fileID: 8074971490817973672, guid: b039f19caed563a4c9e56805787e4833, type: 3}
+  youngerMaleNPC: {fileID: 7444847142103709318, guid: dc797aeaa1d9987438bb68513ac78d27, type: 3}
+  youngerFemaleNPC: {fileID: 3033941425386917668, guid: 67aa4e9e92cff2140a29d8b269eab6d2, type: 3}
   reapingShirt: {r: 0.61006284, g: 0.97495806, b: 1, a: 1}
   reapingPants: {r: 0, g: 0.09093729, b: 0.3962264, a: 1}
   escortHair: {r: 1, g: 0.83647794, b: 0.7372549, a: 1}

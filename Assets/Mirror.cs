@@ -16,7 +16,12 @@ public class Mirror : Interactable
     private GameObject player;
     private StaticData.TributeData playerData;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        return "Mirror";
+    }
+
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 

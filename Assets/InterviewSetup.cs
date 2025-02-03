@@ -79,7 +79,7 @@ public class InterviewSetup : MonoBehaviour
             new List<string>(new string[] { StaticData.mentor.name }),
             dialogueBox);
         currentMenu = mentorText;
-        currentMenu.menu();
+        currentMenu.menu(player.GetComponent<BetterPlayerController>());
 
         selectionMode = SelectionMode.MENTOR;
     }
@@ -166,7 +166,7 @@ public class InterviewSetup : MonoBehaviour
                 "", speakBox);
 
             currentMenu = questions;
-            currentMenu.menu();
+            currentMenu.menu(player.GetComponent<BetterPlayerController>());
 
             mentorCam.SetActive(false);
             interviewCam.SetActive(true);
@@ -193,7 +193,7 @@ public class InterviewSetup : MonoBehaviour
                     new int [] { 0, 0, 0, 0, 0, 1 } },
                 "", speakBox);
 
-            questions.menu();
+            questions.menu(player.GetComponent<BetterPlayerController>());
 
             selectionMode = SelectionMode.QUESTION2;
         } else if (selectionMode == SelectionMode.QUESTION2 && !currentMenu.stillInteracting)
@@ -217,7 +217,7 @@ public class InterviewSetup : MonoBehaviour
                     new int [] { 0, 0, 0, 0, 0, 1 } },
                 "", speakBox);
 
-            questions.menu();
+            questions.menu(player.GetComponent<BetterPlayerController>());
 
             selectionMode = SelectionMode.QUESTION3;
         } else if (selectionMode == SelectionMode.QUESTION3 && !currentMenu.stillInteracting)
@@ -229,7 +229,7 @@ public class InterviewSetup : MonoBehaviour
             dialogueBox);
 
             currentMenu = quote;
-            currentMenu.menu();
+            currentMenu.menu(player.GetComponent<BetterPlayerController>());
 
             selectionMode = SelectionMode.ENDING;
         } else if (selectionMode == SelectionMode.ENDING && !currentMenu.stillInteracting)

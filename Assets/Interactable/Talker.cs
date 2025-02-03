@@ -5,11 +5,21 @@ using TMPro;
 
 public class Talker : Interactable
 {
+    [SerializeField] private string speakerName;
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private List<string> sayings;
     [SerializeField] private List<string> speakers;
     private int sayingIdx;
-    public override void menu()
+
+    public override string interactNote(Tribute caller)
+    {
+        if (GetComponent<Tribute>() != null)
+        {
+            return GetComponent<Tribute>().tributeData.name;
+        }
+        return speakerName;
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 

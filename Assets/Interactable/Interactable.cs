@@ -9,7 +9,8 @@ public abstract class Interactable : MonoBehaviour
     public bool stillInteracting;
     public GameObject currentMenu;
 
-    public abstract void menu();
+    public abstract string interactNote(Tribute caller);
+    public abstract void menu(Tribute caller);
     public abstract void Z();
 
     public enum InteractType

@@ -262,7 +262,9 @@ public class CharacterCustomizer : MonoBehaviour
     }
     public void gotoArena()
     {
-        //TODO enter specialty/appearance/edit-tributes menu before switching scenes
+        StaticData.initializeTributes();
+        //TODO enter specialty/appearance/edit-tributes menu before switching scenes\
+        SceneManager.LoadScene("Arena");
     }
 
     private void setTimer(float time)

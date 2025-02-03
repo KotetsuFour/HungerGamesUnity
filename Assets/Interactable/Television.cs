@@ -20,7 +20,12 @@ public class Television : Interactable
     private List<GameObject> partners;
     private TrainSetup trainSetup;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        return "TV";
+    }
+
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 

@@ -16,6 +16,8 @@ public static class StaticData
     public static GameObject player;
     public static int playerIdx;
 
+    public static int OLDER = 15;
+
     public static TributeData mentor;
     public static Color defaultMentorHair;
     public static Color defaultMentorSkin;
@@ -89,6 +91,15 @@ public static class StaticData
         new Color(79/255f, 170/255f, 171/255f),
     };
 
+    public static int[] maleTributeHairStyles =
+    {
+        1, 2, 3, 4, 5, 7, 8, 9, 11, 14, 16, 19, 20
+    };
+    public static int[] femaleTributeHairStyles =
+    {
+        1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 18, 19, 20, 21, 23, 24
+    };
+
     public static Skill[] reapedSkills = {
                 Skill.CHARM, Skill.CLIMBING, Skill.CAMOUFLAGE,
                 Skill.SWIMMING, Skill.FIRSTAID, Skill.PLANTS,
@@ -125,6 +136,17 @@ public static class StaticData
             }
         }
         return null;
+    }
+    public static void setHairSkinEye(GameObject human, TributeData data)
+    {
+        //Hair
+        findDeepChild(human.transform, "Hair").GetComponent<HairSelector>().setHairStyle(data.appearance[3]);
+        findDeepChild(human.transform, "Hair").GetComponent<HairSelector>().setHairColor(hairColors[data.appearance[0]]);
+        //Skin
+        Material[] mats = findDeepChild(human.transform, "model").GetComponent<SkinnedMeshRenderer>().materials;
+        getMaterialByName(mats, "Skin").color = skinColors[data.appearance[1]];
+        //Eyes
+        getMaterialByName(mats, "Eyes").color = eyeColors[data.appearance[2]];
     }
     public static Material getMaterialByName(Material[] materials, string matName)
     {
@@ -304,8 +326,16 @@ public static class StaticData
         data.appearance = new int[] {
             Random.Range(0, hairColors.Length),
             Random.Range(0, skinColors.Length),
-            Random.Range(0, eyeColors.Length)
+            Random.Range(0, eyeColors.Length), 0
         };
+        if (data.gender == Gender.MALE)
+        {
+            data.appearance[3] = maleTributeHairStyles[Random.Range(0, maleTributeHairStyles.Length)];
+        }
+        else if (data.gender == Gender.FEMALE)
+        {
+            data.appearance[3] = femaleTributeHairStyles[Random.Range(0, femaleTributeHairStyles.Length)];
+        }
     }
     private static void applyDistrictStatBonuses(TributeData data)
     {
@@ -552,7 +582,7 @@ public static class StaticData
         public int district;
         public Reap_Status reapStatus;
         public Attitude attitude;
-        public int[] appearance; //Hair, skin, eye
+        public int[] appearance; //Hair, skin, eye, hairstyle
         public List<Skill> skillsAcquired;
         public List<int> skillLevels;
 

@@ -166,7 +166,7 @@ public class StylistSetup : MonoBehaviour
         choice3.interactType = Interactable.InteractType.EXAMINE;
 
         Talker start = GetComponent<Talker>();
-        start.menu();
+        start.menu(player.GetComponent<BetterPlayerController>());
         player.GetComponent<PlayerController>().hijack(start);
     }
 

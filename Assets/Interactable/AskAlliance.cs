@@ -10,7 +10,12 @@ public class AskAlliance : Interactable
     private List<StaticData.TributeData> askers;
     private int askerIdx;
     private float timer;
-    public override void menu()
+
+    public override string interactNote(Tribute caller)
+    {
+        return GetComponent<Tribute>().tributeData.name;
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
         askerIdx = 0;

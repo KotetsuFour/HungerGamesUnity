@@ -9,35 +9,31 @@ public class Item : Interactable
     public bool packable;
     public int handsNeeded;
     public bool strapped;
-    // Start is called before the first frame update
-    void Start()
-    {
 
+    public float timer;
+
+    public override string interactNote(Tribute caller)
+    {
+        return "Pick Up";
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void menu(Tribute caller)
     {
-        
-    }
-    public override void menu()
-    {
-        if (StaticData.player.GetComponent<PlayerController>().takeItem(this))
+        if (caller.takeItem(this))
         {
             gameObject.layer = 0;
-        } else
+        }
+        else
         {
+            timer = 2;
             currentMenu = Instantiate(handsFull);
             StaticData.findDeepChild(currentMenu.transform, "Note")
                 .GetComponent<TextMeshProUGUI>().text = "This item requires " + handsNeeded
-                 + " hand(s)";
-            stillInteracting = true;
+                 + " free hand(s)";
         }
     }
     public override void Z()
     {
-        Destroy(currentMenu);
-        currentMenu = null;
-        stillInteracting = false;
+        //TODO
     }
 }

@@ -38,7 +38,11 @@ public class StyleChoice : Interactable
     private GameObject currentTribute;
     public List<GameObject> props;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        return "Stylist";
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 

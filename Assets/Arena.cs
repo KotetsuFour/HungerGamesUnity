@@ -1,155 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 
 public class Arena : MonoBehaviour
 {
-    private static string mapsPath = "Assets/Arenas/";
-
-    [SerializeField] private ArenaTile tile;
+    [SerializeField] private Terrain map;
+    [SerializeField] private float tileSize;
     [SerializeField] private GameObject pedestal;
-    private ArenaTile[,] tileMap;
-    private char[,] sectionMap;
+    [SerializeField] private float averageTemperatureDegrees;
+    [SerializeField] private int pedestalArrangement;
     private List<GameObject> pedestals;
-    private int width;
-    private int height;
-    public static float cellSize = 50;
+    [SerializeField] private GameObject cornucopia;
+    [SerializeField] private float feastProbability;
+    [SerializeField] private LayerMask traversable;
 
-    [SerializeField] private List<char> environmentKeys;
-    [SerializeField] private List<Material> environments;
-    private Dictionary<char, Material> environmentDictionary;
+    private Vector3 centerSky;
+    private Vector3 center;
 
-    [SerializeField] private List<char> decorationKeys;
-    [SerializeField] private List<GameObject> decorations;
-    private Dictionary<char, GameObject> decorationDictionary;
-
-    [SerializeField] private List<GameObject> mutts;
-    private List<ArenaTrap> traps;
-
-    [SerializeField] private List<GameObject> animals;
-    [SerializeField] private List<GameObject> plants;
-    [SerializeField] private List<GameObject> inanimateObjects;
-    [SerializeField] private List<GameObject> cornucopiaTypes;
-    private GameObject cornucopia;
-    private int supplySetup;
-    private float feastProbability;
+    [SerializeField] private NPCTribute olderMaleNPC;
+    [SerializeField] private NPCTribute olderFemaleNPC;
+    [SerializeField] private NPCTribute youngerMaleNPC;
+    [SerializeField] private NPCTribute youngerFemaleNPC;
+    [SerializeField] private BetterPlayerController olderMalePlayer;
+    [SerializeField] private BetterPlayerController olderFemalePlayer;
+    [SerializeField] private BetterPlayerController youngerMalePlayer;
+    [SerializeField] private BetterPlayerController youngerFemalePlayer;
 
     public static float arenaTimer;
     public static float timePassed;
     public static bool timerPaused;
     public static Battle currentBattle;
 
-    public void construct(string[] possibleMaps)
+    void Start()
     {
-        string mapFolderPath = mapsPath + possibleMaps[Random.Range(0, possibleMaps.Length)] + "/";
+        //TODO cinematic opening
+        construct();
+    }
 
-        environmentDictionary = new Dictionary<char, Material>();
-        for (int q = 0; q < environmentKeys.Count; q++)
-        {
-            environmentDictionary.Add(environmentKeys[q], environments[q]);
-        }
-
-        decorationDictionary = new Dictionary<char, GameObject>();
-        for (int q = 0; q < decorationKeys.Count; q++)
-        {
-            decorationDictionary.Add(decorationKeys[q], decorations[q]);
-        }
-
-        StreamReader readDetails = new StreamReader(mapFolderPath + "MapDetails.txt");
-
-        StreamReader readTiles = new StreamReader(mapFolderPath + "TileMap.txt");
-        List<List<char>> tileList = new List<List<char>>();
-        while (readTiles.Peek() != -1)
-        {
-            string s = readTiles.ReadLine();
-            int idx = tileList.Count;
-            tileList.Add(new List<char>());
-            for (int q = 0; q < s.Length; q++)
-            {
-                tileList[idx].Add(s[q]);
-            }
-        }
-        readTiles.Close();
-
-        StreamReader readSections = new StreamReader(mapFolderPath + "SectionMap.txt");
-        List<List<char>> sectionList = new List<List<char>>();
-        while (readSections.Peek() != -1)
-        {
-            string s = readSections.ReadLine();
-            int idx = sectionList.Count;
-            sectionList.Add(new List<char>());
-            for (int q = 0; q < s.Length; q++)
-            {
-                sectionList[idx].Add(s[q]);
-            }
-        }
-        readSections.Close();
-
-        StreamReader readDecorations = new StreamReader(mapFolderPath + "DecorationMap.txt");
-        List<List<char>> decorationList = new List<List<char>>();
-        while (readDecorations.Peek() != -1)
-        {
-            string s = readDecorations.ReadLine();
-            int idx = decorationList.Count;
-            decorationList.Add(new List<char>());
-            for (int q = 0; q < s.Length; q++)
-            {
-                decorationList[idx].Add(s[q]);
-            }
-        }
-        readDecorations.Close();
-
-        if (tileList.Count != sectionList.Count || tileList[0].Count != sectionList[0].Count)
-        {
-            Debug.Log("Tile and section maps are not the same size");
-            return;
-        }
-        if (tileList.Count != decorationList.Count || tileList[0].Count != decorationList[0].Count)
-        {
-            Debug.Log("Tile and decoration maps are not the same size");
-            return;
-        }
-
-        width = tileList[0].Count;
-        height = tileList.Count;
-        tileMap = new ArenaTile[width, height];
-
-        for (int q = 0; q < tileList.Count; q++)
-        {
-            for (int w = 0; w < tileList[0].Count; w++)
-            {
-                ArenaTile toPlace = Instantiate(tile);
-                char tileDetails = tileList[q][w];
-                char tileSection = sectionList[q][w];
-                char tileDecoration = decorationList[q][w];
-                toPlace.environment = environmentDictionary[tileDetails];
-                if (tileDetails == 'w')
-                {
-                    toPlace.setWater(2);
-                    toPlace.gameObject.layer = 4;
-                } else if (tileDetails == 'W')
-                {
-                    toPlace.setWater(1);
-                    toPlace.gameObject.layer = 4;
-                }
-                toPlace.transform.position = new Vector3((w - (width / 2.0f)) * cellSize, 0, (q - (height / 2.0f)) * cellSize);
-
-                if (decorationDictionary.ContainsKey(tileDecoration))
-                {
-                    GameObject deco = Instantiate(decorationDictionary[tileDecoration]);
-                    deco.transform.position = toPlace.transform.position;
-                    deco.transform.SetParent(toPlace.transform);
-                }
-                toPlace.gameObject.isStatic = true;
-                tileMap[w, q] = toPlace;
-                sectionMap[w, q] = tileSection;
-            }
-        }
-
-        int pedestalArrangement = int.Parse(readDetails.ReadLine());
-        float distanceFromCorn = 60 + StaticData.numTributes - 24;
+    public void construct()
+    {
         pedestals = new List<GameObject>();
+        centerSky = new Vector3(map.terrainData.size.x / 2, map.terrainData.size.y, map.terrainData.size.z / 2);
+        RaycastHit hit;
+        Physics.Raycast(centerSky, Vector3.down, out hit, float.MaxValue, traversable);
+        center = hit.point;
+
+        float distanceFromCorn = 60 + StaticData.numTributes - 24;
         if (pedestalArrangement == 0)
         {
             semiCirclePedestals(distanceFromCorn);
@@ -161,37 +57,112 @@ public class Arena : MonoBehaviour
             separatedCirclePedestals(distanceFromCorn);
         }
 
-        int cornType = int.Parse(readDetails.ReadLine());
-        cornucopia = Instantiate(cornucopiaTypes[cornType]);
-        cornucopia.transform.position = Vector3.zero;
-
-        //tileMap[0, 0].gameObject.AddComponent<NavMeshSurface>().BuildNavMesh();
-
-        readDetails.Close();
+        int[] order = new int[StaticData.numTributes];
+        //Randomize
+        for (int q = 0; q < order.Length; q++)
+        {
+            order[q] = q;
+        }
+        for (int q = 0; q < order.Length; q++)
+        {
+            int replace = Random.Range(0, order.Length);
+            int temp = order[q];
+            order[q] = order[replace];
+            order[replace] = temp;
+        }
+        for (int q = 0; q < pedestals.Count; q++)
+        {
+            StaticData.TributeData data = StaticData.tributesData[order[q]];
+            if (data == StaticData.playerData)
+            {
+                if (data.gender == StaticData.Gender.MALE)
+                {
+                    if (data.age >= StaticData.OLDER)
+                    {
+                        setupTribute(olderMalePlayer, q).setData(data);
+                    }
+                    else
+                    {
+                        setupTribute(youngerMalePlayer, q).setData(data);
+                    }
+                }
+                else if (data.gender == StaticData.Gender.FEMALE)
+                {
+                    if (data.age >= StaticData.OLDER)
+                    {
+                        setupTribute(olderFemalePlayer, q).setData(data);
+                    }
+                    else
+                    {
+                        setupTribute(youngerFemalePlayer, q).setData(data);
+                    }
+                }
+            }
+            else
+            {
+                if (data.gender == StaticData.Gender.MALE)
+                {
+                    if (data.age >= StaticData.OLDER)
+                    {
+                        setupTribute(olderMaleNPC, q).setData(data);
+                    }
+                    else
+                    {
+                        setupTribute(youngerMaleNPC, q).setData(data);
+                    }
+                }
+                else if (data.gender == StaticData.Gender.FEMALE)
+                {
+                    if (data.age >= StaticData.OLDER)
+                    {
+                        setupTribute(olderFemaleNPC, q).setData(data);
+                    }
+                    else
+                    {
+                        setupTribute(youngerFemaleNPC, q).setData(data);
+                    }
+                }
+            }
+        }
+        if (StaticData.playerData != null)
+        {
+            StaticData.playerData.actualObject.GetComponent<BetterPlayerController>().setupForArena();
+        }
     }
     private void semiCirclePedestals(float distanceFromCorn)
     {
         for (int q = 0; q < StaticData.numTributes; q++)
         {
-            GameObject ped = Instantiate(pedestal);
             float x = q * Mathf.PI / (StaticData.numTributes - 1);
-            ped.transform.position = new Vector3(Mathf.Cos(x), 0, -Mathf.Sin(x)) * distanceFromCorn;
-            pedestals.Add(ped);
+            setPedestal(Mathf.Cos(x), -Mathf.Sin(x), distanceFromCorn);
         }
     }
     private void fullCirclePedestals(float distanceFromCorn)
     {
         for (int q = 0; q < StaticData.numTributes; q++)
         {
-            GameObject ped = Instantiate(pedestal);
             float x = q * Mathf.PI * 2 / StaticData.numTributes;
-            ped.transform.position = new Vector3(Mathf.Cos(x), 0, -Mathf.Sin(x)) * distanceFromCorn;
-            pedestals.Add(ped);
+            setPedestal(Mathf.Cos(x), -Mathf.Sin(x), distanceFromCorn);
         }
     }
     private void separatedCirclePedestals(float distanceFromCorn)
     {
-        //TODO
+        int points = StaticData.numTributes + 12;
+        for (int q = 0; q < points; q++)
+        {
+            if (q % 12 == 0)
+            {
+                continue;
+            }
+            float x = q * Mathf.PI * 2 / (StaticData.numTributes + points);
+            setPedestal(Mathf.Cos(x), -Mathf.Sin(x), distanceFromCorn);
+        }
+    }
+    private void setPedestal(float x, float z, float distanceFromCorn)
+    {
+        RaycastHit hit;
+        Physics.Raycast((new Vector3(x, 0, z) * distanceFromCorn) + centerSky, Vector3.down, out hit, float.MaxValue, traversable);
+        pedestals.Add(Instantiate(pedestal, hit.point, Quaternion.identity));
     }
 
     // Update is called once per frame
@@ -218,6 +189,12 @@ public class Arena : MonoBehaviour
         }
     }
 
+    private Tribute setupTribute(Tribute prefab, int pedestalNum)
+    {
+        Vector3 stage = StaticData.findDeepChild(pedestals[pedestalNum].transform, "Stage").position;
+        Quaternion look = Quaternion.LookRotation(new Vector3(center.x, 0, center.z) - new Vector3(stage.x, 0, stage.z));
+        return Instantiate(prefab, stage, look);
+    }
     public class ArenaTrap
     {
         public char[] mapSections;

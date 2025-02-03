@@ -15,6 +15,7 @@ public class Weapon : Item
     public bool launcher;
     public bool launchable;
     public string description;
+    public string[] animations;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,15 @@ public class Weapon : Item
     // Update is called once per frame
     void Update()
     {
-        
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if (currentMenu != null)
+        {
+            Destroy(currentMenu.gameObject);
+            currentMenu = null;
+        }
     }
 
     public enum DamageType

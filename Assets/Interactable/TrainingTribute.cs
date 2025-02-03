@@ -14,7 +14,12 @@ public class TrainingTribute : Interactable
     public float timer;
     private SelectionMode selectionMode;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        return GetComponent<Tribute>().tributeData.name;
+    }
+
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
         currentMenu = Instantiate(select);

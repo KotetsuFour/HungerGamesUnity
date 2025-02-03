@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4321043402564238219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4321043402564238216}
+  - component: {fileID: 4321043402564238217}
+  - component: {fileID: 4321043402564238218}
+  m_Layer: 6
+  m_Name: Short Axe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4321043402564238216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321043402564238219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8223634608520008134}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4321043402564238217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321043402564238219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d4b017b334ae2419109eedac6890a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 4
+  stillInteracting: 0
+  currentMenu: {fileID: 0}
+  handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
+  packable: 0
+  handsNeeded: 1
+  strapped: 1
+  lethality: 9
+  meleeAccuracyPenalty: 30
+  rangeAccuracyPenalty: 50
+  meleeAttackRange: 5
+  rangeAttackRange: 30
+  proficiencyType: 11
+  proficiencySkill: 0
+  damageType: 0
+  launcher: 1
+  launchable: 0
+  description: A powerful ong-range hunting weapon
+  animations: []
+--- !u!65 &4321043402564238218
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321043402564238219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 1.2}
+  m_Center: {x: -0.25, y: 0, z: 0.25}
+--- !u!1001 &4321043403431459421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4321043402564238216}
+    m_Modifications:
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320816111277946811, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+      propertyPath: m_Name
+      value: PT_ShortWaraxe_01_a
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+--- !u!4 &8223634608520008134 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5320816111277714331, guid: adae6be6654e723469fedd60d61b200c, type: 3}
+  m_PrefabInstance: {fileID: 4321043403431459421}
+  m_PrefabAsset: {fileID: 0}

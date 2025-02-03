@@ -20,13 +20,15 @@ public abstract class Tribute : ArenaEntity
     public static float MAX_SLEEP = DayNightCycle.timeInADay * 2;
     public float currentSleep;
 
+    public RaycastHit gravHit;
+
     public static float DEFAULT_ATTACK_RANGE = 4;
     public bool isGrounded()
     {
         float extraHeight = 0.1f;
         float height = entityCollider.bounds.extents.y + extraHeight;
         bool hit = Physics.BoxCast(entityCollider.bounds.center, entityCollider.bounds.extents, Vector3.down,
-            Quaternion.Euler(new Vector3(90, 0, 0)), height);
+            out gravHit, Quaternion.Euler(new Vector3(90, 0, 0)), height);
         return hit;
     }
 
@@ -146,5 +148,75 @@ public abstract class Tribute : ArenaEntity
     {
         return Mathf.Max(meleeRange(), distantRange());
     }
+
+    public void setData(StaticData.TributeData data)
+    {
+        tributeData = data;
+        data.actualObject = this;
+        StaticData.setHairSkinEye(gameObject, data);
+    }
+
+    public bool takeItem(Item item)
+    {
+        int handsNeeded = item.handsNeeded;
+        if (handsNeeded <= 1)
+        {
+            if (rightHandCapacity() >= handsNeeded)
+            {
+                putInInventoryPosition(rightHand, item.transform);
+                return true;
+            }
+            else if (leftHandCapacity() >= handsNeeded)
+            {
+                putInInventoryPosition(leftHand, item.transform);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (handsNeeded <= 2)
+        {
+            if (rightHandCapacity() + leftHandCapacity() >= handsNeeded)
+            {
+                putInInventoryPosition(rightHand, item.transform);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+    private float rightHandCapacity()
+    {
+        float capacity = 1;
+        for (int q = 0; q < rightHand.transform.childCount; q++)
+        {
+            capacity -= rightHand.GetChild(q).GetComponent<Item>().handsNeeded;
+        }
+        return capacity;
+    }
+    private float leftHandCapacity()
+    {
+        float capacity = 1;
+        for (int q = 0; q < leftHand.transform.childCount; q++)
+        {
+            capacity -= leftHand.transform.GetChild(q).GetComponent<Item>().handsNeeded;
+        }
+        return capacity;
+    }
+
+    private void putInInventoryPosition(Transform destination, Transform item)
+    {
+        item.transform.SetParent(destination);
+        item.transform.localPosition = destination.localPosition;
+        Vector3 euler = destination.eulerAngles;
+        item.transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z);
+    }
+
+
 
 }

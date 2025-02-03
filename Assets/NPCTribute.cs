@@ -5,28 +5,24 @@ using UnityEngine.AI;
 
 public class NPCTribute : Tribute
 {
+    public bool testing;
     private NavMeshAgent agent;
     private HumanNeed needBeingMet;
-    public int tributeIdx;
-    private TributeFOV fov;
+    [SerializeField] private float distanceFromLeader;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         entityCollider = GetComponent<Collider>();
         model = StaticData.findDeepChild(transform, "model").gameObject;
-        animator = model.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
 
-        tributeData = StaticData.tributesData[tributeIdx];
-        tributeData.actualObject = this;
         agent.speed = tributeData.speed;
 
         rightHand = StaticData.findDeepChild(transform, "RightHand");
         leftHand = StaticData.findDeepChild(transform, "LeftHand");
         back1 = StaticData.findDeepChild(transform, "Back1");
         back2 = StaticData.findDeepChild(transform, "Back2");
-
-        fov = StaticData.findDeepChild(transform, "FOV").GetComponent<TributeFOV>();
 
         currentStamina = MAX_STAMINA;
         currentFoodFullness = MAX_FOOD_FULLNESS;
@@ -37,6 +33,10 @@ public class NPCTribute : Tribute
     // Update is called once per frame
     void Update()
     {
+        if (testing)
+        {
+            return;
+        }
         currentFoodFullness -= Arena.timePassed;
         currentWaterFullness -= Arena.timePassed;
         currentSleep -= Arena.timePassed;
@@ -47,12 +47,24 @@ public class NPCTribute : Tribute
         bool sleeping = tributeData.alliance.wakingTime > Arena.arenaTimer;
         animator.SetBool("Sleep", sleeping);
         agent.enabled = !sleeping && !Arena.timerPaused;
-        if (sleeping)
+        if (sleeping && !Arena.timerPaused)
         {
-            currentSleep = Mathf.Min(currentSleep + (Arena.timePassed * 8), MAX_SLEEP);
+            sleepTick(Arena.timePassed);
         }
         else if (tributeData.alliance.members[0] == tributeData)
         {
+
+        }
+        else
+        {
+            agent.stoppingDistance = distanceFromLeader;
+            agent.destination = tributeData.alliance.members[0].actualObject.transform.position;
+            needBeingMet = HumanNeed.FOLLOW;
+        }
+        /*
+        else if (tributeData.alliance.members[0] == tributeData)
+        {
+            /*
             Vector3 fightFlightDest = fov.fightFlightDestination();
             if (fightFlightDest == Vector3.positiveInfinity)
             {
@@ -102,7 +114,8 @@ public class NPCTribute : Tribute
                 tributeData.alliance.destination = fightFlightDest;
                 agent.destination = tributeData.alliance.destination;
             }
-        }
+            */
+/*        }
         else
         {
             needBeingMet = HumanNeed.FOLLOW;
@@ -151,9 +164,9 @@ public class NPCTribute : Tribute
         }
 
         if (currentStamina > 0 && (fov.enemiesInView.Count > 0 || fov.muttsInView.Count > 0
-            /*TODO OR there is an arena trap active*/))
+            /*TODO OR there is an arena trap active*//*))
         {
-            animator.SetBool("Run", true);
+/*            animator.SetBool("Run", true);
             agent.speed = tributeData.speed * 2;
             if (keepMoving)
             {
@@ -166,7 +179,11 @@ public class NPCTribute : Tribute
         }
 
         animator.SetBool("Airborne", !isGrounded());
-
+*/
+    }
+    public void sleepTick(float time)
+    {
+        currentSleep = Mathf.Min(currentSleep + (time * 8), MAX_SLEEP);
     }
 
     private enum HumanNeed

@@ -116,7 +116,7 @@ public class TributeFOV : MonoBehaviour
             }
         }
         //Don't go into the water, just get near it
-        pos += (transform.position - pos).normalized * Arena.cellSize * 0.75f;
+//        pos += (transform.position - pos).normalized * Arena.cellSize * 0.75f;
         return pos;
     }
     public Vector3 getClosestFoodSource()
@@ -143,6 +143,7 @@ public class TributeFOV : MonoBehaviour
         }
         return pos;
     }
+    /*
     public Vector3 fightFlightDestination()
     {
         if (muttsInView.Count > 0)
@@ -205,4 +206,5 @@ public class TributeFOV : MonoBehaviour
             return closest;
         }
     }
+    */
 }

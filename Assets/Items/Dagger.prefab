@@ -77,6 +77,7 @@ MonoBehaviour:
   launcher: 0
   launchable: 0
   description: A small, simple weapon for very close combat
+  animations: []
 --- !u!1 &9010878275192454587
 GameObject:
   m_ObjectHideFlags: 0

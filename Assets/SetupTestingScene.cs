@@ -4,29 +4,44 @@ using UnityEngine;
 
 public class SetupTestingScene : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject npc;
+    [SerializeField] private BetterPlayerController player;
+    [SerializeField] private NPCTribute olderMaleNPC;
+    [SerializeField] private NPCTribute olderFemaleNPC;
+    [SerializeField] private NPCTribute youngerMaleNPC;
+    [SerializeField] private NPCTribute youngerFemaleNPC;
     [SerializeField] private GameObject dialogueBox;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Debug.Log("setup");
-        StaticData.TributeData data = new StaticData.TributeData("TEST");
-        StaticData.playerData = data;
-        player.GetComponent<PlayerController>().tributeData = data;
-        StaticData.player = player;
+        StaticData.gender = StaticData.Gender.FEMALE;
+        StaticData.numTributes = 24;
+        StaticData.age = 16;
+        StaticData.district = 12;
+        StaticData.playerName = "Katniss";
+        StaticData.attitude = StaticData.Attitude.PROTECTOR;
 
-        int num = 24;
-        for (int q = 0; q < num; q++)
+        StaticData.initializeTributes();
+
+        for (int q = 0; q < StaticData.numTributes; q++)
         {
-            GameObject person = Instantiate(npc);
-            float x = q * Mathf.PI / (num - 1);
-            person.transform.position = new Vector3(Mathf.Cos(x), 0, -Mathf.Sin(x)) * 60;
-
-            person.AddComponent<Talker>().setDialogue(new List<string>(new string[] { "Blah" }),
-                new List<string>(new string[] { "Blah" }),
-                dialogueBox);
-            person.layer = 6;
+            StaticData.TributeData data = StaticData.tributesData[q];
+            Tribute tr = null;
+            if (data == StaticData.playerData)
+            {
+                tr = Instantiate(player);
+                tr.GetComponent<BetterPlayerController>().setupForArena();
+            }
+            else if (data.gender == StaticData.Gender.FEMALE)
+            {
+                tr = Instantiate(olderFemaleNPC);
+            }
+            else
+            {
+                tr = Instantiate(olderMaleNPC);
+            }
+            tr.setData(data);
+            float x = q * Mathf.PI / (StaticData.numTributes - 1);
+            tr.transform.position = new Vector3(Mathf.Cos(x), 0, -Mathf.Sin(x)) * 60;
         }
     }
 

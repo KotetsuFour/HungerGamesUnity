@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8207590714455334693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8207590714455334688}
+  - component: {fileID: 8207590714455334695}
+  - component: {fileID: 8207590714455334694}
+  m_Layer: 6
+  m_Name: Sickle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8207590714455334688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207590714455334693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5752508903742094366}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8207590714455334695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207590714455334693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d4b017b334ae2419109eedac6890a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 4
+  stillInteracting: 0
+  currentMenu: {fileID: 0}
+  handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
+  packable: 0
+  handsNeeded: 1
+  strapped: 0
+  lethality: 5
+  meleeAccuracyPenalty: 10
+  rangeAccuracyPenalty: 500
+  meleeAttackRange: 5
+  rangeAttackRange: 0
+  proficiencyType: 14
+  proficiencySkill: 0
+  damageType: 0
+  launcher: 0
+  launchable: 0
+  description: A tool for reaping wheat and stalks at close quarters
+  animations: []
+--- !u!65 &8207590714455334694
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207590714455334693}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.3, z: 2.5}
+  m_Center: {x: -0.1, y: 0, z: 0.1}
+--- !u!1001 &8207590714713067276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8207590714455334688}
+    m_Modifications:
+    - target: {fileID: 4481710663073427250, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_Name
+      value: PT_Pike_10_a
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+--- !u!4 &5752508903742094366 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4481710663073657618, guid: f1cffca53c17e2d4d91bbe92db94e29b, type: 3}
+  m_PrefabInstance: {fileID: 8207590714713067276}
+  m_PrefabAsset: {fileID: 0}

@@ -15,7 +15,12 @@ public class Coach : Interactable
     public float initialTime;
     public float timer;
     private SelectionMode selectionMode;
-    public override void menu()
+
+    public override string interactNote(Tribute caller)
+    {
+        return $"Mentor {StaticData.mentor.name}";
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
         currentMenu = Instantiate(select);

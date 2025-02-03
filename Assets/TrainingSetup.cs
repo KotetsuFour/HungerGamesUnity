@@ -330,7 +330,7 @@ public class TrainingSetup : MonoBehaviour
                 }
             }
             GetComponent<AskAlliance>().setAskers(askers);
-            GetComponent<AskAlliance>().menu();
+            GetComponent<AskAlliance>().menu(player.GetComponent<BetterPlayerController>());
             player.GetComponent<PlayerController>().hijack(GetComponent<AskAlliance>());
 
             if (StaticData.trainingSequenceNum <= 0 && askers.Count == 0)
@@ -341,7 +341,7 @@ public class TrainingSetup : MonoBehaviour
         }
         else
         {
-            door.GetComponent<Teleporter>().menu();
+            door.GetComponent<Teleporter>().menu(player.GetComponent<BetterPlayerController>());
         }
     }
     public void printAlliances()

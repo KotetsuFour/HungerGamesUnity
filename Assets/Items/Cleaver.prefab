@@ -50,20 +50,21 @@ MonoBehaviour:
   stillInteracting: 0
   currentMenu: {fileID: 0}
   handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
-  packable: 1
+  packable: 0
   handsNeeded: 1
-  strapped: 0
-  lethality: 7
-  meleeAccuracyPenalty: 10
-  rangeAccuracyPenalty: 500
+  strapped: 1
+  lethality: 9
+  meleeAccuracyPenalty: 30
+  rangeAccuracyPenalty: 50
   meleeAttackRange: 5
-  rangeAttackRange: 0
-  proficiencyType: 16
-  proficiencySkill: 0
-  damageType: 0
-  launcher: 0
+  rangeAttackRange: 30
+  proficiencyType: 15
+  proficiencySkill: 1
+  damageType: 1
+  launcher: 1
   launchable: 0
-  description: A very large knife for cleaving
+  description: A powerful ong-range hunting weapon
+  animations: []
 --- !u!65 &6596892639513657701
 BoxCollider:
   m_ObjectHideFlags: 0

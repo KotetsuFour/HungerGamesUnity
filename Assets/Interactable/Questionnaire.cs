@@ -23,7 +23,12 @@ public class Questionnaire : Interactable
 
     private SelectionMode selectionMode;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        //TODO
+        return null;
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 

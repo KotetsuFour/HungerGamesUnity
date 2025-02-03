@@ -84,7 +84,8 @@ public class TrainSetup : MonoBehaviour
                         player = Instantiate(youngerMalePlayer);
                     }
                 }
-                paintReapingClothes(player, data);
+                //                paintReapingClothes(player, data);
+                StaticData.setHairSkinEye(player, data);
                 moveTo(player, playerPos);
             }
             else
@@ -98,9 +99,10 @@ public class TrainSetup : MonoBehaviour
         moveTo(mentor, mentorPos);
         StaticData.findDeepChild(mentor.transform, "model")
             .GetComponent<Animator>().Play(SITTING_TALKING);
-
+        /*
         setEscort();
         moveTo(escort, escortPos);
+        */
 
         television.GetComponent<Television>().setPartners(partners);
         television.GetComponent<Television>().setTrainSetup(this);
@@ -109,6 +111,7 @@ public class TrainSetup : MonoBehaviour
         mentor.AddComponent<SpecialtySelect>().setNecessities(dialogueBox, speakBox, fadeScreen);
         mentor.layer = 6;
 
+        /*
         escort.AddComponent<Talker>().setDialogue(new List<string>(new string[] {
             "We'll arrive at the Capitol soon. You're going to love it there.",
             "In the meantime, you can freshen up in front of the mirror or familiarize yourself " +
@@ -121,6 +124,7 @@ public class TrainSetup : MonoBehaviour
         player.GetComponent<PlayerController>().quickConstruct();
         escort.GetComponent<Talker>().menu();
         player.GetComponent<PlayerController>().hijack(escort.GetComponent<Talker>());
+        */
     }
 
     // Update is called once per frame
@@ -144,6 +148,7 @@ public class TrainSetup : MonoBehaviour
         StaticData.defaultMentorEye = defaultMentorEye;
         StaticData.defaultMentorShirt = mentorShirt;
         StaticData.defaultMentorPants = mentorPants;
+        /*
         Material[] materials = StaticData.findDeepChild(mentor.transform, "Mesh")
             .GetComponent<SkinnedMeshRenderer>().materials;
         StaticData.paintHairSkinEye(materials, defaultMentorHair,
@@ -151,6 +156,7 @@ public class TrainSetup : MonoBehaviour
         StaticData.paintMediumSleeveShirt(materials, mentorShirt);
         StaticData.paintPants(materials, mentorPants);
         StaticData.paintShoes(materials, Color.black);
+        */
     }
     private void paintReapingClothes(GameObject tribute, StaticData.TributeData data)
     {
@@ -165,6 +171,7 @@ public class TrainSetup : MonoBehaviour
     private void setEscort()
     {
         escort = Instantiate(olderFemaleNPC);
+        /*
         Material[] materials = StaticData.findDeepChild(escort.transform, "Mesh")
             .GetComponent<SkinnedMeshRenderer>().materials;
         StaticData.paintHairSkinEye(materials, escortHair,
@@ -175,6 +182,7 @@ public class TrainSetup : MonoBehaviour
         StaticData.paintLongSleeveShirt(materials, escortPants);
         StaticData.paintShortSleeveJacket(materials, escortJacket);
         StaticData.getMaterialByName(materials, "Skin").color = Color.white;
+        */
     }
 
     public List<GameObject> loadPartners()
@@ -209,11 +217,11 @@ public class TrainSetup : MonoBehaviour
                     partners.Add(Instantiate(youngerMaleNPC));
                 }
             }
-            paintReapingClothes(partners[partners.Count - 1], data);
+            StaticData.setHairSkinEye(partners[partners.Count - 1], data);
+//            paintReapingClothes(partners[partners.Count - 1], data);
 
             moveTo(partners[q], partnerPositions[q]);
-            StaticData.findDeepChild(partners[q].transform, "model")
-                .GetComponent<Animator>().Play(SITTING_IDLE);
+            partners[q].GetComponent<Animator>().Play(SITTING_IDLE);
 
             string quote = null;
             if (data.attitude == StaticData.Attitude.RUNNER)

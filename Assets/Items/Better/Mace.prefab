@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &87300467206821845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87300467206821846}
+  - component: {fileID: 87300467206821847}
+  - component: {fileID: 87300467206821844}
+  m_Layer: 6
+  m_Name: Mace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87300467206821846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87300467206821845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7545548489047759100}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &87300467206821847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87300467206821845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d4b017b334ae2419109eedac6890a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 4
+  stillInteracting: 0
+  currentMenu: {fileID: 0}
+  handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
+  packable: 0
+  handsNeeded: 1
+  strapped: 0
+  lethality: 6
+  meleeAccuracyPenalty: 10
+  rangeAccuracyPenalty: 500
+  meleeAttackRange: 5
+  rangeAttackRange: 0
+  proficiencyType: 15
+  proficiencySkill: 3
+  damageType: 2
+  launcher: 0
+  launchable: 0
+  description: A threatening blunt weapon from medieval times
+  animations: []
+--- !u!65 &87300467206821844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87300467206821845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 0.7, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0.8}
+--- !u!1001 &87300465446107950
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 87300467206821846}
+    m_Modifications:
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7602369813126512626, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+      propertyPath: m_Name
+      value: PT_Mace_01_b
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+--- !u!4 &7545548489047759100 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7602369813126144978, guid: 6475952c11e0d3640b0781cd9ab62917, type: 3}
+  m_PrefabInstance: {fileID: 87300465446107950}
+  m_PrefabAsset: {fileID: 0}

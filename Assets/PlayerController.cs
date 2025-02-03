@@ -229,7 +229,7 @@ public class PlayerController : Tribute
                 animator.SetBool("Backward", false);
                 animator.SetBool("Right", false);
                 animator.SetBool("Left", false);
-                viewedInteractable.GetComponent<Interactable>().menu();
+                viewedInteractable.GetComponent<Interactable>().menu(this);
             }
         }
         if (Input.GetKeyDown(KeyCode.Backspace))

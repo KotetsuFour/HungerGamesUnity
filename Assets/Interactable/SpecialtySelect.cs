@@ -22,7 +22,11 @@ public class SpecialtySelect : Interactable
     private float initialTime;
     private float timer;
 
-    public override void menu()
+    public override string interactNote(Tribute caller)
+    {
+        return $"Mentor {StaticData.mentor.name}";
+    }
+    public override void menu(Tribute caller)
     {
         stillInteracting = true;
 
