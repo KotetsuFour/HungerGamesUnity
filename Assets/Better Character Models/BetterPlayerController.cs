@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class BetterPlayerController : Tribute
 {
@@ -11,6 +12,7 @@ public class BetterPlayerController : Tribute
     [SerializeField] private int lookDistance;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private Transform menu;
+    [SerializeField] private Transform hud;
     private GameObject viewedInteractable;
 
     private CameraRig[] cameras;
@@ -26,6 +28,8 @@ public class BetterPlayerController : Tribute
     private bool mouseMode;
 
     private bool quickConstructedAlready;
+
+    public static int ATTACK_METER_SPEED = 180;
 
     // Start is called before the first frame update
     void Start()
@@ -181,27 +185,10 @@ public class BetterPlayerController : Tribute
                 headCam.bounds.extents.y + lookDistance, interactableLayer);
             if (boxHit)
             {
-                /*
-                if (hit.collider.GetComponent<Item>() != null)
-                {
-                    interactNote.GetComponent<TextMeshProUGUI>().text = hit.collider.name.Replace("(Clone)", "") + " (Click)";
-                }
-                else if (hit.collider.GetComponent<Interactable>().interactType == Interactable.InteractType.COACH)
-                {
-                    interactNote.GetComponent<TextMeshProUGUI>().text = "Train " + hit.collider.GetComponent<Coach>().taughtSkill;
-                }
-                else if (hit.collider.GetComponent<Interactable>().interactType == Interactable.InteractType.TRIBUTE)
-                {
-                    interactNote.GetComponent<TextMeshProUGUI>().text = hit.collider.GetComponent<TrainingTribute>().data.name;
-                }
-                else
-                {
-                    interactNote.GetComponent<TextMeshProUGUI>().text = hit.collider.GetComponent<Interactable>().interactType + " (Click)";
-                }
-                */
                 TextMeshProUGUI interact = StaticData.findDeepChild(menu, "Interact").GetComponent<TextMeshProUGUI>();
                 interact.gameObject.SetActive(true);
                 interact.text = hit.collider.GetComponent<Interactable>().interactNote(this);
+                interact.color = Color.white;
                 viewedInteractable = hit.collider.gameObject;
             }
             else
@@ -210,7 +197,39 @@ public class BetterPlayerController : Tribute
                 viewedInteractable = null;
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.P) && hud != null)
+            {
+                if (combatMode)
+                {
+                    StaticData.findDeepChild(hud, "NormalHUD").gameObject.SetActive(true);
+                    StaticData.findDeepChild(hud, "CombatHUD").gameObject.SetActive(false);
+                }
+                else
+                {
+                    StaticData.findDeepChild(hud, "NormalHUD").gameObject.SetActive(false);
+                    StaticData.findDeepChild(hud, "CombatHUD").gameObject.SetActive(true);
+                }
+                combatMode = !combatMode;
+            }
+
+            if (combatMode)
+            {
+                StaticData.findDeepChild(hud, "Pointer").Rotate(0, 0, Time.deltaTime * ATTACK_METER_SPEED);
+                RaycastHit enemHit;
+                if (Physics.Raycast(headCam.transform.position, headCam.transform.forward,
+                    out enemHit, attackRange(), interactableLayer)
+                    && enemHit.collider.GetComponent<ArenaEntity>() != null)
+                {
+                    ArenaEntity entity = enemHit.collider.GetComponent<ArenaEntity>();
+                    initializeHitGame(entity, enemHit.distance);
+                }
+                else
+                {
+                    initializeHitGame(null, 0);
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && !combatMode)
             {
                 interacting = true;
                 StaticData.findDeepChild(menu, "Interact").gameObject.SetActive(false);
@@ -224,7 +243,7 @@ public class BetterPlayerController : Tribute
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                //Drop item in hand
+                drop();
             }
 
             if (viewedInteractable != null && Input.GetKeyDown(KeyCode.Mouse0))
@@ -235,25 +254,49 @@ public class BetterPlayerController : Tribute
                 animator.SetBool("Backward", false);
                 animator.SetBool("Right", false);
                 animator.SetBool("Left", false);
-                viewedInteractable.GetComponent<Interactable>().menu(this);
+                if (combatMode && viewedInteractable.GetComponent<ArenaEntity>() != null)
+                {
+                    calculateHit(viewedInteractable.GetComponent<ArenaEntity>());
+                }
+                else
+                {
+                    viewedInteractable.GetComponent<Interactable>().menu(this);
+                }
             }
         }
-        /*
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            mouseMode = !mouseMode;
-            if (mouseMode)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-        */
+    }
+
+    private void initializeHitGame(ArenaEntity target, float distance)
+    {
+        Transform attMeter = StaticData.findDeepChild(hud, "AttackMeter");
+
+        StaticData.findDeepChild(attMeter, "Hit2").gameObject.SetActive(target != null);
+        StaticData.findDeepChild(attMeter, "Crit2").gameObject.SetActive(target != null);
+        StaticData.findDeepChild(attMeter, "Lethal").gameObject.SetActive(target != null);
+        StaticData.findDeepChild(attMeter, "Hit1").gameObject.SetActive(target != null);
+        StaticData.findDeepChild(attMeter, "Crit1").gameObject.SetActive(target != null);
+        StaticData.findDeepChild(attMeter, "Miss").gameObject.SetActive(target != null);
+
+        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100, 1, 100);
+        float critHit = normHit / 2;
+        float lethHit = normHit / 10;
+
+        StaticData.findDeepChild(attMeter, "Hit2").GetComponent<Image>().fillAmount = 1;
+        StaticData.findDeepChild(attMeter, "Crit2").GetComponent<Image>().fillAmount
+            = 1 - (((normHit - critHit) / 2) + critHit);
+        StaticData.findDeepChild(attMeter, "Lethal").GetComponent<Image>().fillAmount
+            = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2));
+        StaticData.findDeepChild(attMeter, "Hit1").GetComponent<Image>().fillAmount
+            = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2) + lethHit);
+        StaticData.findDeepChild(attMeter, "Crit1").GetComponent<Image>().fillAmount
+            = 1 - ((normHit - critHit) / 2);
+        StaticData.findDeepChild(attMeter, "Miss").GetComponent<Image>().fillAmount
+            = 1- normHit;
+    }
+
+    private void calculateHit(ArenaEntity target)
+    {
+
     }
 
     private void updateCameras()

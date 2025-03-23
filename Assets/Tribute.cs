@@ -13,6 +13,8 @@ public abstract class Tribute : ArenaEntity
     public float currentStamina;
     public static float MAX_STAMINA = 10;
 
+    public bool combatMode;
+
     public static float MAX_FOOD_FULLNESS = DayNightCycle.timeInADay * 2;
     public float currentFoodFullness;
     public static float MAX_WATER_FULLNESS = DayNightCycle.timeInADay;
@@ -32,64 +34,36 @@ public abstract class Tribute : ArenaEntity
         return hit;
     }
 
-    //Messy, but I'm pretty sure it should work
     public Weapon getEquippedWeapon()
     {
+        Weapon rightHeld = null;
+        Weapon leftHeld = null;
         if (rightHand.childCount > 0)
         {
-            Weapon rightHeld = rightHand.GetChild(0).GetComponent<Weapon>();
-            if (rightHeld == null)
+            rightHeld = rightHand.GetChild(0).GetComponent<Weapon>();
+        }
+        if (leftHand.childCount > 0)
+        {
+            leftHeld = leftHand.GetChild(0).GetComponent<Weapon>();
+        }
+        if (rightHeld != null)
+        {
+            if (rightHeld.launcher)
             {
-                if (leftHand.childCount > 0)
-                {
-                    Weapon leftHeld = leftHand.GetChild(0).GetComponent<Weapon>();
-                    if (leftHeld == null)
-                    {
-                        return null;
-                    } else
-                    {
-                        if (leftHeld.launcher && hasLaunchable() != null)
-                        {
-                            return leftHeld;
-                        } else
-                        {
-                            return null;
-                        }
-                    }
-                }
+                return null;
+            }
+            else if (rightHeld.launchable && leftHeld != null && leftHeld.launcher)
+            {
+                return leftHeld;
             }
             else
             {
-                if (rightHeld.launcher)
-                {
-                    return null;
-                } else if (rightHeld.launchable)
-                {
-                    if (leftHand.childCount > 0)
-                    {
-                        Weapon leftHeld = leftHand.GetChild(0).GetComponent<Weapon>();
-                        if (leftHeld == null)
-                        {
-                            return null;
-                        }
-                        else
-                        {
-                            if (leftHeld.launcher)
-                            {
-                                return leftHeld;
-                            }
-                            else
-                            {
-                                return null;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    return rightHeld;
-                }
+                return rightHeld;
             }
+        }
+        if (leftHeld != null && leftHeld.launcher && hasLaunchable() != null)
+        {
+            return leftHeld;
         }
         return null;
     }
@@ -144,9 +118,37 @@ public abstract class Tribute : ArenaEntity
         }
         return wep.rangeAttackRange;
     }
-    public float attackRange()
+    public override float attackRange()
     {
         return Mathf.Max(meleeRange(), distantRange());
+    }
+
+    public override int getAccuracy(float distance)
+    {
+        Weapon wep = getEquippedWeapon();
+        if (wep == null)
+        {
+            return tributeData.accuracy;
+        }
+        int ret = tributeData.accuracy + (tributeData.getSkillLevel(wep.proficiencyType) * 5);
+        if (distance <= wep.meleeAttackRange)
+        {
+            ret -= wep.meleeAccuracyPenalty;
+        }
+        else if (distance <= wep.rangeAttackRange)
+        {
+            ret -= wep.rangeAccuracyPenalty;
+        }
+        else
+        {
+            return 0;
+        }
+        return ret;
+    }
+
+    public override int getAvoidance(float distance)
+    {
+        return tributeData.avoidance;
     }
 
     public void setData(StaticData.TributeData data)
@@ -217,6 +219,34 @@ public abstract class Tribute : ArenaEntity
         item.transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z);
     }
 
+    public void drop()
+    {
+        Item rightHeld = null;
+        Item leftHeld = null;
+        if (rightHand.childCount > 0)
+        {
+            rightHeld = rightHand.GetChild(0).GetComponent<Item>();
+        }
+        if (leftHand.childCount > 0)
+        {
+            leftHeld = leftHand.GetChild(0).GetComponent<Item>();
+        }
+        if (leftHeld != null && (rightHeld == null || leftHeld != getEquippedWeapon()))
+        {
+            removeFromHand(leftHeld);
+        }
+        else if (rightHeld != null)
+        {
+            removeFromHand(rightHeld);
+        }
+    }
+    private void removeFromHand(Item item)
+    {
+        item.transform.SetParent(null);
+        item.transform.position = transform.position;
+        item.transform.rotation = Quaternion.identity;
+        item.gameObject.layer = 6;
+    }
 
 
 }
