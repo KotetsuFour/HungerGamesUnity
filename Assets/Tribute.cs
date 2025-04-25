@@ -122,7 +122,34 @@ public abstract class Tribute : ArenaEntity
     {
         return Mathf.Max(meleeRange(), distantRange());
     }
-
+    public override void startAttack(ArenaEntity target, int style)
+    {
+        Weapon wep = getEquippedWeapon();
+        if (wep == null)
+        {
+            //TODO barehand attacks
+        }
+        else
+        {
+            animator.Play(wep.animations[style]);
+            attackTime = wep.animationTimes[style];
+        }
+        if (style == 1)
+        {
+            target.takeDamage(tributeData.strength + (wep == null ? 0 : wep.lethality),
+                Weapon.WeaponSkill.NONE);
+        }
+        else if (style == 2)
+        {
+            target.takeDamage(tributeData.strength + (wep == null ? 0 : (wep.lethality * 2)),
+                Weapon.WeaponSkill.NONE);
+        }
+        else if (style == 3)
+        {
+            target.takeDamage(tributeData.strength + (wep.lethality * 2),
+                wep == null ? Weapon.WeaponSkill.NONE : wep.proficiencySkill);
+        }
+    }
     public override int getAccuracy(float distance)
     {
         Weapon wep = getEquippedWeapon();
@@ -149,6 +176,10 @@ public abstract class Tribute : ArenaEntity
     public override int getAvoidance(float distance)
     {
         return tributeData.avoidance;
+    }
+    public override void takeDamage(int damage, Weapon.WeaponSkill effect)
+    {
+        //TODO
     }
 
     public void setData(StaticData.TributeData data)

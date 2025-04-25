@@ -82,6 +82,14 @@ public class BetterPlayerController : Tribute
     // Update is called once per frame
     void Update()
     {
+        if (attackTime > 0)
+        {
+            attackTime -= Time.deltaTime;
+            if (attackTime <= 0)
+            {
+                StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.clear;
+            }
+        }
         if (interacting)
         {
             if (!viewedInteractable.GetComponent<Interactable>().stillInteracting)
@@ -246,7 +254,7 @@ public class BetterPlayerController : Tribute
                 drop();
             }
 
-            if (viewedInteractable != null && Input.GetKeyDown(KeyCode.Mouse0))
+            if (viewedInteractable != null && Input.GetKeyDown(KeyCode.Mouse0) && attackTime <= 0)
             {
                 interacting = true;
                 StaticData.findDeepChild(menu, "Interact").gameObject.SetActive(false);
@@ -256,7 +264,17 @@ public class BetterPlayerController : Tribute
                 animator.SetBool("Left", false);
                 if (combatMode && viewedInteractable.GetComponent<ArenaEntity>() != null)
                 {
-                    calculateHit(viewedInteractable.GetComponent<ArenaEntity>());
+                    RaycastHit enemHit;
+                    if (Physics.Raycast(headCam.transform.position, headCam.transform.forward,
+                        out enemHit, attackRange(), interactableLayer)
+                        && enemHit.collider.GetComponent<ArenaEntity>() != null)
+                    {
+                        calculateHit(viewedInteractable.GetComponent<ArenaEntity>(), enemHit.distance);
+                    }
+                    else
+                    {
+                        Debug.LogError("Something went wrong with the attack");
+                    }
                 }
                 else
                 {
@@ -269,34 +287,77 @@ public class BetterPlayerController : Tribute
     private void initializeHitGame(ArenaEntity target, float distance)
     {
         Transform attMeter = StaticData.findDeepChild(hud, "AttackMeter");
+        if (target == null)
+        {
+            attMeter.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            attMeter.gameObject.SetActive(true);
+        }
 
-        StaticData.findDeepChild(attMeter, "Hit2").gameObject.SetActive(target != null);
-        StaticData.findDeepChild(attMeter, "Crit2").gameObject.SetActive(target != null);
-        StaticData.findDeepChild(attMeter, "Lethal").gameObject.SetActive(target != null);
-        StaticData.findDeepChild(attMeter, "Hit1").gameObject.SetActive(target != null);
-        StaticData.findDeepChild(attMeter, "Crit1").gameObject.SetActive(target != null);
-        StaticData.findDeepChild(attMeter, "Miss").gameObject.SetActive(target != null);
-
-        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100, 1, 100);
+        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100.0f, 0, 1);
         float critHit = normHit / 2;
         float lethHit = normHit / 10;
 
         StaticData.findDeepChild(attMeter, "Hit2").GetComponent<Image>().fillAmount = 1;
         StaticData.findDeepChild(attMeter, "Crit2").GetComponent<Image>().fillAmount
-            = 1 - (((normHit - critHit) / 2) + critHit);
+            = 1 - ((normHit - critHit) / 2);
         StaticData.findDeepChild(attMeter, "Lethal").GetComponent<Image>().fillAmount
             = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2));
-        StaticData.findDeepChild(attMeter, "Hit1").GetComponent<Image>().fillAmount
-            = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2) + lethHit);
         StaticData.findDeepChild(attMeter, "Crit1").GetComponent<Image>().fillAmount
-            = 1 - ((normHit - critHit) / 2);
+            = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2) + lethHit);
+        StaticData.findDeepChild(attMeter, "Hit1").GetComponent<Image>().fillAmount
+            = 1 - (((normHit - critHit) / 2) + critHit);
         StaticData.findDeepChild(attMeter, "Miss").GetComponent<Image>().fillAmount
-            = 1- normHit;
+            = 1 - normHit;
     }
 
-    private void calculateHit(ArenaEntity target)
+    private void calculateHit(ArenaEntity target, float distance)
     {
+        float position = 1 - ((StaticData.findDeepChild(hud, "Pointer").rotation.eulerAngles.z % 360) / 360);
 
+        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100.0f, 0, 1);
+        float critHit = normHit / 2;
+        float lethHit = normHit / 10;
+
+//        float onHit2 = 1;
+        float onCrit2 = 1 - ((normHit - critHit) / 2);
+        float onLethal = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2));
+        float onCrit1 = 1 - (((normHit - critHit) / 2) + ((critHit - lethHit) / 2) + lethHit);
+        float onHit1 = 1 - (((normHit - critHit) / 2) + critHit);
+        float onMiss = 1 - normHit;
+        if (position < onMiss)
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.black;
+            startAttack(0);
+        }
+        else if (position < onHit1)
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = new Color(1, 192f/255, 0);
+            startAttack(1);
+        }
+        else if (position < onCrit1)
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.red;
+            startAttack(2);
+        }
+        else if (position < onLethal)
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.cyan;
+            startAttack(3);
+        }
+        else if (position < onCrit2)
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.red;
+            startAttack(2);
+        }
+        else
+        {
+            StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = new Color(1, 192f / 255, 0);
+            startAttack(1);
+        }
     }
 
     private void updateCameras()

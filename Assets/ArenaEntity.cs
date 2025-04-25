@@ -9,9 +9,18 @@ public abstract class ArenaEntity : MonoBehaviour
     public Animator animator;
     public Collider entityCollider;
     public Rigidbody rb;
+    protected float attackTime;
 
     public abstract float attackRange();
 
     public abstract int getAccuracy(float distance);
     public abstract int getAvoidance(float distance);
+    /**
+     * 0 for miss
+     * 1 for hit
+     * 2 for crit
+     * 3 for lethal
+     */
+    public abstract void startAttack(ArenaEntity target, int style);
+    public abstract void takeDamage(int damage, Weapon.WeaponSkill effect);
 }

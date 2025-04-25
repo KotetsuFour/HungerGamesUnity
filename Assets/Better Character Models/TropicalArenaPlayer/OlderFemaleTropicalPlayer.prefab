@@ -965,6 +965,7 @@ MonoBehaviour:
   back1: {fileID: 0}
   back2: {fileID: 0}
   currentStamina: 0
+  combatMode: 0
   currentFoodFullness: 0
   currentWaterFullness: 0
   currentSleep: 0
@@ -974,6 +975,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   menu: {fileID: 2704042080668969033}
+  hud: {fileID: 8621826696792672764}
   sensitivityX: 200
   sensitivityY: 200
 --- !u!54 &-8770026220092429153
@@ -1592,6 +1594,10 @@ PrefabInstance:
     - target: {fileID: 3883121687775127896, guid: 2c6f9e3e59624b840a5e6ceb59d45326, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6616524955430315563, guid: 2c6f9e3e59624b840a5e6ceb59d45326, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c6f9e3e59624b840a5e6ceb59d45326, type: 3}

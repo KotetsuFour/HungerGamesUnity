@@ -965,6 +965,7 @@ MonoBehaviour:
   back1: {fileID: 0}
   back2: {fileID: 0}
   currentStamina: 0
+  combatMode: 0
   currentFoodFullness: 0
   currentWaterFullness: 0
   currentSleep: 0
@@ -974,6 +975,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   menu: {fileID: 3223546447336526592}
+  hud: {fileID: 6860351145184708832}
   sensitivityX: 200
   sensitivityY: 200
 --- !u!54 &6946254204519727373

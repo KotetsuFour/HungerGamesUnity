@@ -11,11 +11,11 @@ public class Weapon : Item
     public int rangeAttackRange;
     public StaticData.Skill proficiencyType;
     public WeaponSkill proficiencySkill;
-    public DamageType damageType;
     public bool launcher;
     public bool launchable;
     public string description;
     public string[] animations;
+    public float[] animationTimes;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +37,6 @@ public class Weapon : Item
         }
     }
 
-    public enum DamageType
-    {
-        SLASH, PIERCE, BLUNT
-    }
     public enum WeaponSkill
     {
         NONE, HEADSHOT, DISMEMBER, CRUSHING_BLOW, IMPALE

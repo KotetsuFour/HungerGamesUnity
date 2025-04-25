@@ -53,6 +53,7 @@ MonoBehaviour:
   packable: 0
   handsNeeded: 1
   strapped: 0
+  timer: 0
   lethality: 6
   meleeAccuracyPenalty: 10
   rangeAccuracyPenalty: 500
@@ -64,7 +65,16 @@ MonoBehaviour:
   launcher: 0
   launchable: 0
   description: A perfectly balanced modern sword
-  animations: []
+  animations:
+  - Sword Slash
+  - Sword Slash
+  - Sword Slash
+  - Sword Slash
+  animationTimes:
+  - 1.267
+  - 1.267
+  - 1.267
+  - 1.267
 --- !u!65 &1889655593253752768
 BoxCollider:
   m_ObjectHideFlags: 0
