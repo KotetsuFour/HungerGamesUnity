@@ -9,6 +9,7 @@ public abstract class Tribute : ArenaEntity
     public Transform leftHand;
     public Transform back1;
     public Transform back2;
+    protected Weapon equippedWeapon;
 
     public float currentStamina;
     public static float MAX_STAMINA = 10;
@@ -36,6 +37,10 @@ public abstract class Tribute : ArenaEntity
 
     public Weapon getEquippedWeapon()
     {
+        return equippedWeapon;
+    }
+    public void updateEquippedWeapon()
+    {
         Weapon rightHeld = null;
         Weapon leftHeld = null;
         if (rightHand.childCount > 0)
@@ -50,22 +55,26 @@ public abstract class Tribute : ArenaEntity
         {
             if (rightHeld.launcher)
             {
-                return null;
+                equippedWeapon = null;
+                return;
             }
             else if (rightHeld.launchable && leftHeld != null && leftHeld.launcher)
             {
-                return leftHeld;
+                equippedWeapon = leftHeld;
+                return;
             }
             else
             {
-                return rightHeld;
+                equippedWeapon = rightHeld;
+                return;
             }
         }
         if (leftHeld != null && leftHeld.launcher && hasLaunchable() != null)
         {
-            return leftHeld;
+            equippedWeapon = leftHeld;
+            return;
         }
-        return null;
+        equippedWeapon = null;
     }
 
     public Item hasLaunchable()
@@ -248,6 +257,7 @@ public abstract class Tribute : ArenaEntity
         item.transform.localPosition = destination.localPosition;
         Vector3 euler = destination.eulerAngles;
         item.transform.rotation = Quaternion.Euler(euler.x, euler.y, euler.z);
+        updateEquippedWeapon();
     }
 
     public void drop()
@@ -270,6 +280,7 @@ public abstract class Tribute : ArenaEntity
         {
             removeFromHand(rightHeld);
         }
+        updateEquippedWeapon();
     }
     private void removeFromHand(Item item)
     {
@@ -277,6 +288,7 @@ public abstract class Tribute : ArenaEntity
         item.transform.position = transform.position;
         item.transform.rotation = Quaternion.identity;
         item.gameObject.layer = 6;
+        updateEquippedWeapon();
     }
 
 

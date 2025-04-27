@@ -331,32 +331,32 @@ public class BetterPlayerController : Tribute
         if (position < onMiss)
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.black;
-            startAttack(0);
+            startAttack(target, 0);
         }
         else if (position < onHit1)
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = new Color(1, 192f/255, 0);
-            startAttack(1);
+            startAttack(target, 1);
         }
         else if (position < onCrit1)
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.red;
-            startAttack(2);
+            startAttack(target, 2);
         }
         else if (position < onLethal)
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.cyan;
-            startAttack(3);
+            startAttack(target, 3);
         }
         else if (position < onCrit2)
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = Color.red;
-            startAttack(2);
+            startAttack(target, 2);
         }
         else
         {
             StaticData.findDeepChild(hud, "HitNote").GetComponent<Image>().color = new Color(1, 192f / 255, 0);
-            startAttack(1);
+            startAttack(target, 1);
         }
     }
 
