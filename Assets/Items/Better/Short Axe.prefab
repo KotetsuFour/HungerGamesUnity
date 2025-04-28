@@ -49,10 +49,12 @@ MonoBehaviour:
   interactType: 4
   stillInteracting: 0
   currentMenu: {fileID: 0}
+  itemName: Short Axe
   handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
   packable: 0
   handsNeeded: 1
   strapped: 1
+  timer: 0
   lethality: 9
   meleeAccuracyPenalty: 30
   rangeAccuracyPenalty: 50
@@ -60,11 +62,11 @@ MonoBehaviour:
   rangeAttackRange: 30
   proficiencyType: 11
   proficiencySkill: 0
-  damageType: 0
   launcher: 1
   launchable: 0
   description: A powerful ong-range hunting weapon
   animations: []
+  animationTimes: []
 --- !u!65 &4321043402564238218
 BoxCollider:
   m_ObjectHideFlags: 0

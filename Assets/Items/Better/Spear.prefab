@@ -49,10 +49,12 @@ MonoBehaviour:
   interactType: 0
   stillInteracting: 0
   currentMenu: {fileID: 0}
+  itemName: Spear
   handsFull: {fileID: 0}
   packable: 0
   handsNeeded: 2
   strapped: 0
+  timer: 0
   lethality: 8
   meleeAccuracyPenalty: 15
   rangeAccuracyPenalty: 500
@@ -60,11 +62,11 @@ MonoBehaviour:
   rangeAttackRange: 0
   proficiencyType: 10
   proficiencySkill: 4
-  damageType: 1
   launcher: 0
   launchable: 0
   description: A long, pointed weapon meant for thrusting attacks
   animations: []
+  animationTimes: []
 --- !u!65 &5648346391505686561
 BoxCollider:
   m_ObjectHideFlags: 0

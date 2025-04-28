@@ -29,7 +29,7 @@ public class BetterPlayerController : Tribute
 
     private bool quickConstructedAlready;
 
-    public static int ATTACK_METER_SPEED = 180;
+    public static int ATTACK_METER_SPEED = 360;
 
     // Start is called before the first frame update
     void Start()
@@ -297,7 +297,7 @@ public class BetterPlayerController : Tribute
             attMeter.gameObject.SetActive(true);
         }
 
-        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100.0f, 0, 1);
+        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 400.0f, 0, 1);
         float critHit = normHit / 2;
         float lethHit = normHit / 10;
 
@@ -318,7 +318,7 @@ public class BetterPlayerController : Tribute
     {
         float position = 1 - ((StaticData.findDeepChild(hud, "Pointer").rotation.eulerAngles.z % 360) / 360);
 
-        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 100.0f, 0, 1);
+        float normHit = Mathf.Clamp((getAccuracy(distance) - target.getAvoidance(distance)) / 400.0f, 0, 1);
         float critHit = normHit / 2;
         float lethHit = normHit / 10;
 

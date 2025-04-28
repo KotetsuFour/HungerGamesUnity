@@ -11,6 +11,8 @@ public abstract class ArenaEntity : MonoBehaviour
     public Rigidbody rb;
     protected float attackTime;
 
+    public abstract string getName();
+    public abstract int getCurrentHP();
     public abstract float attackRange();
 
     public abstract int getAccuracy(float distance);
@@ -22,5 +24,9 @@ public abstract class ArenaEntity : MonoBehaviour
      * 3 for lethal
      */
     public abstract void startAttack(ArenaEntity target, int style);
-    public abstract void takeDamage(int damage, Weapon.WeaponSkill effect);
+    public abstract void takeDamage(int damage, object damager, Weapon.WeaponSkill effect);
+    public bool isAlive()
+    {
+        return getCurrentHP() > 0;
+    }
 }

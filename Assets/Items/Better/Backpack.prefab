@@ -62,10 +62,12 @@ MonoBehaviour:
   interactType: 4
   stillInteracting: 0
   currentMenu: {fileID: 0}
+  itemName: Backpack
   handsFull: {fileID: 3196890677609213110, guid: 2bfb8f7dc68630840b62fe6bca657ce9, type: 3}
   packable: 0
   handsNeeded: 1
   strapped: 1
+  timer: 0
   contents: []
   capacity: 25
   restrictedTo: 

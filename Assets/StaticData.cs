@@ -38,13 +38,16 @@ public static class StaticData
     public static bool chooseDistricts;
 
     public static List<TributeData> tributesData;
+    public static List<string> logs;
 
     public static int maxSkillLevel = 5;
+    public static int maxHP = 24;
 
     public static int trainingSequenceNum;
     public static int allianceRequirement = 100;
     public static int oufitChoice;
     public static int trainingScore;
+    public static Arena arena;
 
     public static Color[] hairColors = {
         new Color(0, 0, 0),
@@ -164,6 +167,7 @@ public static class StaticData
     public static void initializeTributes()
     {
         tributesData = new List<TributeData>();
+        logs = new List<string>();
         int numPerDistrict = numTributes / 12;
         for(int q = 0; q < numTributes; q++)
         {
@@ -180,6 +184,7 @@ public static class StaticData
             data.district = dist;
             data.gender = g;
             data.dataIdx = q;
+            data.currentHP = maxHP;
 
             if (allReaped)
             {
@@ -586,6 +591,7 @@ public static class StaticData
         public List<Skill> skillsAcquired;
         public List<int> skillLevels;
 
+        public int currentHP;
         public int strength;
         public int accuracy;
         public int avoidance;
@@ -671,6 +677,44 @@ public static class StaticData
         int[] pool = { 12, 13, 13, 14, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 16,
             17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18};
         return pool[Random.Range(0, pool.Length)];
+    }
+    public static void registerDamage(ArenaEntity victim, int damage, object attacker, Weapon.WeaponSkill skill)
+    {
+        string log = $"-{victim.getName()} took {damage} damage from {getNameOfInteracter(attacker)}";
+        if (attacker is Tribute)
+        {
+            Tribute atk = (Tribute)attacker;
+            Weapon wep = atk.getEquippedWeapon();
+            log += $" using {wep.getName()}";
+        }
+        log += $" and is now at {victim.getCurrentHP()} HP.";
+        if (skill != Weapon.WeaponSkill.NONE)
+        {
+            log += $" {skill} was inflicted.";
+        }
+        logs.Add(log);
+        Debug.Log(log);
+        if (victim is Tribute && !victim.isAlive())
+        {
+            registerDeath((Tribute)victim, attacker);
+        }
+    }
+    public static void registerDeath(Tribute victim, object killer)
+    {
+        string log = $"@{victim.getName()} was killed by {getNameOfInteracter(killer)}.";
+        logs.Add(log);
+        Debug.Log(log);
+    }
+    private static string getNameOfInteracter(object interacter)
+    {
+        if (interacter is ArenaEntity)
+        {
+            return ((ArenaEntity)interacter).getName();
+        }
+        else
+        {
+            return interacter.ToString();
+        }
     }
     public enum Gender
     {

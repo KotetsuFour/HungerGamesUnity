@@ -26,6 +26,11 @@ public abstract class Tribute : ArenaEntity
     public RaycastHit gravHit;
 
     public static float DEFAULT_ATTACK_RANGE = 4;
+
+    public override string getName()
+    {
+        return $"{tributeData.name} ({tributeData.id})";
+    }
     public bool isGrounded()
     {
         float extraHeight = 0.1f;
@@ -145,18 +150,24 @@ public abstract class Tribute : ArenaEntity
         }
         if (style == 1)
         {
-            target.takeDamage(tributeData.strength + (wep == null ? 0 : wep.lethality),
+            target.takeDamage(tributeData.strength + (wep == null ? 0 : wep.lethality), this,
                 Weapon.WeaponSkill.NONE);
         }
         else if (style == 2)
         {
-            target.takeDamage(tributeData.strength + (wep == null ? 0 : (wep.lethality * 2)),
+            target.takeDamage(tributeData.strength + (wep == null ? 0 : (wep.lethality * 2))
+                + ((wep != null && Random.Range(0, StaticData.maxSkillLevel) < tributeData.getSkillLevel(wep.proficiencyType))
+                || (wep == null && Random.Range(0, StaticData.maxSkillLevel) < tributeData.getSkillLevel(StaticData.Skill.BRAWLING))
+                ? tributeData.strength / 2 : 0),
+                this,
                 Weapon.WeaponSkill.NONE);
         }
         else if (style == 3)
         {
-            target.takeDamage(tributeData.strength + (wep.lethality * 2),
-                wep == null ? Weapon.WeaponSkill.NONE : wep.proficiencySkill);
+            target.takeDamage((tributeData.strength * 3 / 2) + (wep.lethality * 2),
+                this,
+                wep != null && Random.Range(0, StaticData.maxSkillLevel) < tributeData.getSkillLevel(wep.proficiencyType)
+                ? wep.proficiencySkill : Weapon.WeaponSkill.NONE);
         }
     }
     public override int getAccuracy(float distance)
@@ -186,9 +197,35 @@ public abstract class Tribute : ArenaEntity
     {
         return tributeData.avoidance;
     }
-    public override void takeDamage(int damage, Weapon.WeaponSkill effect)
+    public override void takeDamage(int damage, object damager, Weapon.WeaponSkill effect)
     {
-        //TODO
+        tributeData.currentHP -= damage;
+        StaticData.registerDamage(this, damage, damager, effect);
+        if (effect == Weapon.WeaponSkill.HEADSHOT)
+        {
+            tributeData.accuracy -= 2;
+        }
+        else if (effect == Weapon.WeaponSkill.DISMEMBER)
+        {
+            tributeData.strength -= 2;
+        }
+        else if (effect == Weapon.WeaponSkill.CRUSHING_BLOW)
+        {
+            tributeData.avoidance -= 20;
+        }
+        else if (effect == Weapon.WeaponSkill.IMPALE)
+        {
+            tributeData.speed -= 2;
+        }
+
+        if (!isAlive())
+        {
+            animator.Play("Death");
+        }
+    }
+    public override int getCurrentHP()
+    {
+        return tributeData.currentHP;
     }
 
     public void setData(StaticData.TributeData data)

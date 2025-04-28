@@ -63,10 +63,12 @@ MonoBehaviour:
   interactType: 4
   stillInteracting: 0
   currentMenu: {fileID: 0}
+  itemName: Quiver
   handsFull: {fileID: 0}
   packable: 0
   handsNeeded: 1
   strapped: 1
+  timer: 0
   contents: []
   capacity: 16
   restrictedTo: 
